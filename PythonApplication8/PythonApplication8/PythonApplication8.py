@@ -33,6 +33,35 @@ def Chained_Hash_Print(T):
 		for j in T[i]:
 			print(str(j.data) + " " + str(j .key))
 
+def hash_function1(T,k,i):
+	return (hash_function(T,k)+i)%len(T)
+
+def Hash_Insert(T,k):
+	i = 0
+	while i!=len(T):
+		j = hash_function1(T,k.key,i)
+		if T[j] == None or T[j] == "Smece":
+			T[j] = k
+			return j
+		else:
+			i = i + 1
+
+	return None
+
+def Hash_Search(T,k):
+	i = 0
+	j = hash_function1(T,k.key,i)
+	while T[j] != None and i != len(T):
+		j = hash_function1(T,k.key,i)
+		if T[j] == k:
+			return j
+		i = i + 1
+
+	return None
+
+def Hash_Delete(T,k):
+	T[Hash_Search(T,k)] = "Smece"
+
 T = []
 
 for i in range(10):
@@ -63,4 +92,48 @@ Chained_Hash_Print(T)
 print("\nSearch test for Ivan,3")
 print(str(hash_function(T,d2.key)) + " " + str(Chained_Hash_Search(T,d2)))
 
-print("\n")
+print("\n\n\n")
+
+print("Open addressing: \n")
+
+T1 = []
+for i in range(10):
+	T1.append(None)
+
+d1 = Data("Milos",1)
+d3 = Data("Ilija", 3)
+d2 = Data("Ivan",3)
+d4 = Data("Ana",2)
+
+Hash_Insert(T1,d1)
+Hash_Insert(T1,d2)
+Hash_Insert(T1,d3)
+Hash_Insert(T1,d4)
+
+for i in T1:
+	if(i == None):
+		continue
+	print(str(i.data) + " " + str(i.key))
+
+print("\nSearch test for Ilija,3")
+print("Index is " + str(Hash_Search(T1,d3)))
+
+print("\nDelete test for Ilija,3")
+Hash_Delete(T1,d3)
+for i in T1:
+	if(i == None):
+		continue
+	if(i == "Smece"):
+		print("Smece")
+		continue
+	print(str(i.data) + " " + str(i.key))
+
+print("\nInserting Ilija,3 again")
+Hash_Insert(T1,d3)
+for i in T1:
+	if(i == None):
+		continue
+	if(i == "Smece"):
+		print("Smece")
+		continue
+	print(str(i.data) + " " + str(i.key))
