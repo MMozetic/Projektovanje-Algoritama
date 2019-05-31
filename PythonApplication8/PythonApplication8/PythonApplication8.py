@@ -118,8 +118,8 @@ for i in T1:
 print("\nSearch test for Ilija,3")
 print("Index is " + str(Hash_Search(T1,d3)))
 
-print("\nDelete test for Ilija,3")
-Hash_Delete(T1,d3)
+print("\nDelete test for Ivan,3")
+Hash_Delete(T1,d2)
 for i in T1:
 	if(i == None):
 		continue
@@ -128,8 +128,20 @@ for i in T1:
 		continue
 	print(str(i.data) + " " + str(i.key))
 
-print("\nInserting Ilija,3 again")
-Hash_Insert(T1,d3)
+print("\nSearching for Ivan,3")
+if(Hash_Search(T1,d2) == None):
+	print("Ivan,3 doesn't exist")
+else:
+	print("Ivan,3 exists")
+
+print("\nSearching for Ilija,3")
+if(Hash_Search(T1,d3) == None):
+	print("Ilija,3 doesn't exist")
+else:
+	print("Ilija,3 exists")
+
+print("\nInserting Ivan,3 again")
+Hash_Insert(T1,d2)
 for i in T1:
 	if(i == None):
 		continue
@@ -137,3 +149,5 @@ for i in T1:
 		print("Smece")
 		continue
 	print(str(i.data) + " " + str(i.key))
+
+print("\n")
